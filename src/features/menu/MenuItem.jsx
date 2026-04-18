@@ -1,0 +1,17 @@
+import React from "react";
+
+const MenuItem = ({ pizza }) => {
+  const { name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  return (
+    <li>
+      <img src={imageUrl} alt="" />
+      <div>
+        <p>{name}</p>
+        <p>{ingredients.join(", ")}</p>
+        <div>{!soldOut ? <p>{unitPrice}</p> : <p>Sold out</p>}</div>
+      </div>
+    </li>
+  );
+};
+
+export default MenuItem;

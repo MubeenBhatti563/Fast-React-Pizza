@@ -24,7 +24,7 @@ const CreateUser = () => {
 
       {username.length >= 3 && (
         <div>
-          <Button>Start ordering</Button>
+          <Button type="primary">Start ordering</Button>
         </div>
       )}
     </form>

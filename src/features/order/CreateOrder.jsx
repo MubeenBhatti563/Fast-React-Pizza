@@ -16,28 +16,34 @@ const CreateOrder = () => {
   ];
 
   return (
-    <div>
-      <h2 className="text-lg my-6">Ready to order? Let's go!</h2>
+    <div className="px-4 py-6">
+      <h2 className="text-xl mb-8 font-semibold">Ready to order? Let's go!</h2>
 
       {/* <Form method="POST" action="/order/new"> */}
-      <Form method="POST" className="flex flex-col gap-6">
-        <div>
-          <label htmlFor="customer">First name</label>
-          <div>
+      <Form method="POST">
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40" htmlFor="customer">
+            First name
+          </label>
+          <div className="grow">
             <input type="text" name="customer" required className="input" />
           </div>
         </div>
 
-        <div>
-          <label htmlFor="phone">Phone number</label>
-          <div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40" htmlFor="phone">
+            Phone number
+          </label>
+          <div className="grow">
             <input type="number" name="phone" id="phone" className="input" />
           </div>
         </div>
 
-        <div>
-          <label htmlFor="address">Address</label>
-          <div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40" htmlFor="address">
+            Address
+          </label>
+          <div className="grow">
             <input
               type="tel"
               name="address"
@@ -48,7 +54,7 @@ const CreateOrder = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-5 mb-12">
           <input
             type="checkbox"
             name="priority"
@@ -60,7 +66,7 @@ const CreateOrder = () => {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Button disabled={isSubmitting}>
+          <Button disabled={isSubmitting} type="primary">
             {isSubmitting ? "Placing order..." : "Order now"}
           </Button>
         </div>

@@ -4,7 +4,7 @@ import Button from "../../ui/Button";
 const CartItem = ({ item }) => {
   const { name, quantity, totalPrice } = item;
   return (
-    <li className="py-3 sm:flex sm:items-center sm:justify-center">
+    <li className="py-3 sm:flex sm:items-center sm:justify-between">
       <p className="mb-1 sm:mb-0">
         {quantity}&times; {name}
       </p>

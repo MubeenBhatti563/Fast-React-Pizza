@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import Button from "../../ui/Button";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateName } from "./userSlice";
 
 const CreateUser = () => {
   const [username, setUsername] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const trimmedName = username.trim();
+    if (!trimmedName) return;
+
+    dispatch(updateName(trimmedName));
+    navigate("/menu");
   };
   return (
     <form
@@ -22,7 +33,7 @@ const CreateUser = () => {
         className="w-72 mb-8 input"
       />
 
-      {username.length >= 3 && (
+      {username.trim().length >= 3 && (
         <div>
           <Button type="primary">Start ordering</Button>
         </div>

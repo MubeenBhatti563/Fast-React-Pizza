@@ -1,9 +1,11 @@
 import React from "react";
 import { Form, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
 
 const CreateOrder = () => {
   const navigation = useNavigation();
+  const username = useSelector((state) => state.user.username);
   const isSubmitting = navigation.state === "submitting";
   const cart = [
     {
@@ -26,7 +28,13 @@ const CreateOrder = () => {
             First name
           </label>
           <div className="grow">
-            <input type="text" name="customer" required className="input" />
+            <input
+              type="text"
+              name="customer"
+              defaultValue={username}
+              required
+              className="input"
+            />
           </div>
         </div>
 

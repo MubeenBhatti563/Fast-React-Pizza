@@ -1,10 +1,13 @@
 import React from "react";
 import Button from "../../ui/Button";
-import { useDispatch } from "react-redux";
-import { addItem } from "../cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, deleteItem } from "../cart/cartSlice";
 
 const MenuItem = ({ pizza }) => {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const isAdded = useSelector((state) => state.cart.cart).some(
+    (item) => item.pizzaId === id,
+  );
   const dispatch = useDispatch();
 
   const handleOnClick = () => {
@@ -39,8 +42,11 @@ const MenuItem = ({ pizza }) => {
             </p>
           )}
           {!soldOut && (
-            <Button type="small" onClick={handleOnClick}>
-              Add to cart
+            <Button
+              type="small"
+              onClick={isAdded ? () => dispatch(deleteItem(id)) : handleOnClick}
+            >
+              {isAdded ? "Delete" : "Add to cart"}
             </Button>
           )}
         </div>

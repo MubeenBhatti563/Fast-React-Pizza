@@ -2,20 +2,14 @@ import React from "react";
 import { Form, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
+import { getCart, getTotalCartPrice } from "../cart/cartSlice";
 
 const CreateOrder = () => {
   const navigation = useNavigation();
   const username = useSelector((state) => state.user.username);
+  const totalPrice = useSelector(getTotalCartPrice);
+  const cart = useSelector(getCart);
   const isSubmitting = navigation.state === "submitting";
-  const cart = [
-    {
-      pizzaId: 12,
-      name: "Mediterranean",
-      quantity: 2,
-      unitPrice: 16,
-      totalPrice: 32,
-    },
-  ];
 
   return (
     <div className="px-4 py-6">
@@ -75,7 +69,9 @@ const CreateOrder = () => {
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <Button disabled={isSubmitting} type="primary">
-            {isSubmitting ? "Placing order..." : "Order now"}
+            {isSubmitting
+              ? "Placing order..."
+              : `Order now from ${totalPrice}$`}
           </Button>
         </div>
       </Form>

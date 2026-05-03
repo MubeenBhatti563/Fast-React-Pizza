@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import OrderItem from "./OrderItem";
+import { dateFormat, timeFormat } from "../../utils/utils";
 
 const Order = () => {
   const order = useLoaderData();
@@ -31,15 +32,17 @@ const Order = () => {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-2 bg-stone-200 px-6 py-5">
-        <p className="font-medium">{estimatedDelivery}</p>
+        <p className="font-medium">
+          Only {dateFormat(estimatedDelivery)} minutes left
+        </p>
         <p className="text-xs text-stone-500">
-          (Estimated Deliver: {estimatedDelivery})
+          (Estimated Deliver: {timeFormat(estimatedDelivery)})
         </p>
       </div>
 
       <ul className="dive-stone-200 divide-y border-b border-t">
         {cart.map((item) => (
-          <OrderItem item={item} key={item.id} />
+          <OrderItem item={item} key={item.pizzaId} />
         ))}
       </ul>
 

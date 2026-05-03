@@ -1,4 +1,6 @@
 import { redirect } from "react-router-dom";
+import store from "../store";
+import { clearItem } from "../features/cart/cartSlice";
 
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 
@@ -59,5 +61,6 @@ export async function action({ request }) {
   };
 
   const newOrder = await createOrder(order);
+  store.dispatch(clearItem());
   return redirect(`/order/${newOrder.id}`);
 }

@@ -1,8 +1,9 @@
 import React from "react";
 import { Form, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCart, getTotalCartPrice } from "../cart/cartSlice";
+import { fetchAddress } from "../user/userSlice";
 
 const CreateOrder = () => {
   const navigation = useNavigation();
@@ -10,10 +11,13 @@ const CreateOrder = () => {
   const totalPrice = useSelector(getTotalCartPrice);
   const cart = useSelector(getCart);
   const isSubmitting = navigation.state === "submitting";
+  const dispatch = useDispatch();
 
   return (
     <div className="px-4 py-6">
       <h2 className="text-xl mb-8 font-semibold">Ready to order? Let's go!</h2>
+
+      <button onClick={() => dispatch(fetchAddress())}>Get position</button>
 
       {/* <Form method="POST" action="/order/new"> */}
       <Form method="POST">

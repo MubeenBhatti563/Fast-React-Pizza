@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://MubeenBhatti563.github.io/Fast-React-Pizza/",
+  "homepage": "https://mubeenbhatti563.github.io/Fast-React-Pizza/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

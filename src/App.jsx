@@ -12,39 +12,44 @@ import CreateOrder from "./features/order/CreateOrder";
 import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      element: <AppLayout />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/menu",
+          element: <Menu />,
+          loader: menuLoader,
+          errorElement: <Error />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
+        },
+        {
+          path: "/order/:orderId",
+          element: <Order />,
+          loader: orderLoader,
+          errorElement: <Error />,
+        },
+        {
+          path: "/order/new",
+          element: <CreateOrder />,
+          action: createOrderAction,
+        },
+      ],
+    },
+  ],
   {
-    element: <AppLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/menu",
-        element: <Menu />,
-        loader: menuLoader,
-        errorElement: <Error />,
-      },
-      {
-        path: "/cart",
-        element: <Cart />,
-      },
-      {
-        path: "/order/:orderId",
-        element: <Order />,
-        loader: orderLoader,
-        errorElement: <Error />,
-      },
-      {
-        path: "/order/new",
-        element: <CreateOrder />,
-        action: createOrderAction,
-      },
-    ],
-  },
-]);
+    basename: "/Fast-React-Pizza",
+  }
+);
 
 function App() {
   return <RouterProvider router={router} />;
